@@ -42,8 +42,7 @@ dependencies {
 shadowJar {
     checkstyleTest
 
-    libsDirName = "P:/1.17/plugins"
-    archiveFileName = "Dream-Otchlan-${project.version} (1.8-1.19).jar"
+    archiveFileName = "Dream-Otchlan-${project.version}_1.8-1.19.jar"
 
     minimize()
 
