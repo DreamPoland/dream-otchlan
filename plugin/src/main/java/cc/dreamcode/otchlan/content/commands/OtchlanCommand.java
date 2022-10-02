@@ -30,26 +30,19 @@ public class OtchlanCommand extends CommandHandler {
 
     @Override
     protected void handle(@NonNull CommandSender sender, @NonNull String[] args) {
+        this.whenNot(this.otchlanService.getOtchlanState().equals(OtchlanState.OPENED), this.messageConfig.otchlanClosed);
+
         final Player player = (Player) sender;
-
-        if (!this.otchlanService.getOtchlanState().equals(OtchlanState.OPENED)) {
-            this.send(this.messageConfig.otchlanClosed, player);
-            return;
-        }
-
         final OtchlanConfig otchlanConfig = this.pluginConfig.otchlanConfig;
         final long time = this.otchlanService.getCacheOpenPlayerTime().getOrDefault(player.getUniqueId(), 0L);
 
-        if (!CountUtil.isOut(time, otchlanConfig.otchlanOpenCoolDown)) {
-            this.send(this.messageConfig.cooldown, player, new ImmutableMap.Builder<String, Object>()
-                    .put("time", TimeUtil.convertMills(CountUtil.getCountDownMills(
-                            time, otchlanConfig.otchlanOpenCoolDown
-                    )))
-                    .build());
-            return;
-        }
-        this.otchlanService.getCacheOpenPlayerTime().put(player.getUniqueId(), System.currentTimeMillis());
+        this.whenNot(CountUtil.isOut(time, otchlanConfig.otchlanOpenCoolDown), this.messageConfig.cooldown, new ImmutableMap.Builder<String, Object>()
+                .put("time", TimeUtil.convertMills(CountUtil.getCountDownMills(
+                        time, otchlanConfig.otchlanOpenCoolDown
+                )))
+                .build());
 
+        this.otchlanService.getCacheOpenPlayerTime().put(player.getUniqueId(), System.currentTimeMillis());
         this.otchlanService.getBukkitMenuPaginated().openPage(player);
     }
 
