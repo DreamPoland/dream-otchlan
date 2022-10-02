@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'checkstyle'
+    id 'maven-publish'
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
@@ -11,6 +12,7 @@ allprojects {
 
     apply plugin: 'java-library'
     apply plugin: 'checkstyle'
+    apply plugin: 'maven-publish'
 
     java {
         withSourcesJar()
@@ -23,6 +25,24 @@ allprojects {
         }
     }
 
+    compileJava.options.encoding = 'UTF-8'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    checkstyle {
+        toolVersion '10.3.1'
+        maxWarnings = 0
+    }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.required = false
+            html.required = true
+        }
+    }
+
     repositories {
         mavenCentral()
         maven { url "https://papermc.io/repo/repository/maven-public/" }
@@ -30,6 +50,7 @@ allprojects {
         maven { url "https://storehouse.okaeri.eu/repository/maven-public" }
         maven { url "https://repo.codemc.io/repository/maven-public/" }
         maven { url 'https://nexus.iridiumdevelopment.net/repository/maven-releases/' }
+        maven { url "https://repo.dreamcode.cc/releases" }
     }
 }
 
@@ -38,4 +59,40 @@ subprojects {
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+
+    publishing {
+        repositories {
+            maven {
+                if (version.toString().endsWith("-SNAPSHOT")) {
+                    name = "snapshots"
+                    url = uri("https://repo.dreamcode.cc/snapshots")
+                } else {
+                    name = "releases"
+                    url = uri("https://repo.dreamcode.cc/releases")
+                }
+
+                credentials {
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_TOKEN")
+                }
+            }
+        }
+        publications {
+            libraries(MavenPublication) {
+                from components.java
+
+                pom.withXml {
+                    def repositories = asNode().appendNode('repositories')
+
+                    project.getRepositories().findAll { repo ->
+                        if (repo.getUrl().toString().startsWith('http')) {
+                            def repository = repositories.appendNode('repository')
+                            repository.appendNode('id', repo.getDisplayName())
+                            repository.appendNode('url', repo.getUrl().toString())
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

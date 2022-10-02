@@ -1,21 +1,14 @@
-Working with template:
+Dream-Otchlan
 -----
-Clone this repo to your account, rename package name, then by pressing ``CTRL + SHIFT + R`` change all variables to your plugin name. (Template --> PluginName).
-
-Finally, remove all **unnecessary** template functions.
-(nms can easily removed by deleting implement in build.gradle)
-
-Read all comment above method/class/reference to find out what it means and how to use it -
-Build to jar by ``shadowJar`` gradle task.
 
 **Required:**
------
-- Spigot 1.8x-1.19x (spigot-api + nms)
-- Java 8+. (template works on java 8)
+- Spigot 1.8x-1.19x.
+- Java 8+.
 
 ------
 
 **Libraries**: <33
+- [Dream-Menu](https://github.com/DreamPoland/dream-menu) by [DreamCode](https://github.com/DreamPoland)
 - [Okaeri-Configs](https://github.com/OkaeriPoland/okaeri-configs) by [Okaeri](https://github.com/OkaeriPoland)
 - [Okaeri-Persistence](https://github.com/OkaeriPoland/okaeri-persistence) by [Okaeri](https://github.com/OkaeriPoland)
 - [Okaeri-Injector](https://github.com/OkaeriPoland/okaeri-injector) by [Okaeri](https://github.com/OkaeriPoland)
