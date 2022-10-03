@@ -17,7 +17,7 @@ import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.Website;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
-@Plugin(name = "Dream-Otchlan", version = "1.0.1-SNAPSHOT")
+@Plugin(name = "Dream-Otchlan", version = "1.0.2-SNAPSHOT")
 @Author("Ravis96")
 @Description("Otchlan plugin by DreamCode.")
 @Website("DreamCode - https://discord.gg/dreamcode")
