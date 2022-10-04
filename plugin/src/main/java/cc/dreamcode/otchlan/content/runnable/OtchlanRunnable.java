@@ -14,11 +14,8 @@ import com.google.common.collect.ImmutableMap;
 import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Item;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class OtchlanRunnable extends BukkitRunnable implements NoticeSender {
@@ -62,18 +59,16 @@ public class OtchlanRunnable extends BukkitRunnable implements NoticeSender {
                 this.otchlanService.setBukkitMenuPaginated(
                         this.otchlanPlugin.createInstance(OtchlanMenuSetup.class).build());
 
-                final List<ItemStack> items = new ArrayList<>();
                 this.otchlanPlugin.getServer().getWorlds().forEach(world ->
                         world.getEntities()
                                 .stream()
                                 .filter(Item.class::isInstance)
                                 .forEach(entity -> {
                                     final Item item = (Item) entity;
-                                    items.add(item.getItemStack());
+                                    this.otchlanService.getBukkitMenuPaginated().addStorageItem(item.getItemStack());
                                     item.remove();
                                 }));
 
-                this.otchlanService.getBukkitMenuPaginated().addStorageItems(items);
                 this.otchlanService.setOtchlanState(OtchlanState.OPENED);
             });
 
