@@ -4,7 +4,7 @@ import cc.dreamcode.otchlan.OtchlanPlugin;
 import cc.dreamcode.otchlan.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.otchlan.config.ConfigSerdesPack;
 import cc.dreamcode.otchlan.exception.PluginRuntimeException;
-import cc.dreamcode.otchlan.stereotypes.Configuration;
+import cc.dreamcode.otchlan.config.annotations.Configuration;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.OkaeriConfig;

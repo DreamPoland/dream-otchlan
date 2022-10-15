@@ -2,12 +2,12 @@ package cc.dreamcode.otchlan;
 
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.otchlan.boot.PluginBootLoader;
+import cc.dreamcode.otchlan.command.otchlan.OtchlanCommand;
 import cc.dreamcode.otchlan.component.ComponentHandler;
 import cc.dreamcode.otchlan.config.MessageConfig;
 import cc.dreamcode.otchlan.config.PluginConfig;
-import cc.dreamcode.otchlan.content.OtchlanService;
-import cc.dreamcode.otchlan.content.commands.OtchlanCommand;
-import cc.dreamcode.otchlan.content.runnable.OtchlanStartRunnable;
+import cc.dreamcode.otchlan.scheduler.SchedulerService;
+import cc.dreamcode.otchlan.scheduler.otchlan.OtchlanStartRunnable;
 import lombok.Getter;
 import lombok.NonNull;
 import org.bukkit.entity.HumanEntity;
@@ -17,7 +17,11 @@ import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.Website;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
-@Plugin(name = "Dream-Otchlan", version = "1.0.3-SNAPSHOT")
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
+@Plugin(name = "Dream-Otchlan", version = "1.0.4-SNAPSHOT")
 @Author("Ravis96")
 @Description("Otchlan plugin by DreamCode.")
 @Website("DreamCode - https://discord.gg/dreamcode")
@@ -41,6 +45,22 @@ public final class OtchlanPlugin extends PluginBootLoader {
 
         // Component system inspired by okaeri-platform
         // These simple structure can register all content of this plugin. (A-Z)
+        componentHandler.registerComponent(SchedulerService.class, schedulerService -> {
+            schedulerService.setScheduler(new ScheduledThreadPoolExecutor(1, r -> {
+                Thread thread = Executors.defaultThreadFactory().newThread(r);
+                thread.setName("dream-otchlan-scheduler");
+                return thread;
+            }));
+
+            schedulerService.getScheduler().setRemoveOnCancelPolicy(true);
+            schedulerService.getScheduler().setExecuteExistingDelayedTasksAfterShutdownPolicy(false);
+            schedulerService.setAsync(new ForkJoinPool(
+                    16,
+                    new SchedulerService.WorkerThreadFactory(),
+                    new SchedulerService.ExceptionHandler(),
+                    false
+            ));
+        });
         componentHandler.registerComponent(PluginConfig.class);
         componentHandler.registerComponent(MessageConfig.class);
         componentHandler.registerComponent(OtchlanService.class);

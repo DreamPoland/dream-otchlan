@@ -1,8 +1,8 @@
 package cc.dreamcode.otchlan.config;
 
-import cc.dreamcode.otchlan.content.config.OtchlanConfig;
-import cc.dreamcode.otchlan.content.config.OtchlanMenuConfig;
-import cc.dreamcode.otchlan.stereotypes.Configuration;
+import cc.dreamcode.otchlan.config.otchlan.OtchlanConfig;
+import cc.dreamcode.otchlan.config.otchlan.OtchlanMenuConfig;
+import cc.dreamcode.otchlan.config.annotations.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
 import eu.okaeri.configs.annotation.Header;

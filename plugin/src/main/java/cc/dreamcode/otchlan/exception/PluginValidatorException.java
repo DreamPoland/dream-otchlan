@@ -1,6 +1,6 @@
 package cc.dreamcode.otchlan.exception;
 
-import cc.dreamcode.otchlan.features.notice.Notice;
+import cc.dreamcode.otchlan.notice.Notice;
 import lombok.Getter;
 
 import java.util.HashMap;

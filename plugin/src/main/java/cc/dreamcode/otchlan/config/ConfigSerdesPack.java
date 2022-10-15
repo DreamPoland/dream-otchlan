@@ -1,7 +1,7 @@
 package cc.dreamcode.otchlan.config;
 
 import cc.dreamcode.menu.serdes.bukkit.okaeri.MenuBuilderSerdes;
-import cc.dreamcode.otchlan.features.notice.NoticeSerdes;
+import cc.dreamcode.otchlan.notice.NoticeSerdes;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.configs.serdes.SerdesRegistry;
 import lombok.NonNull;

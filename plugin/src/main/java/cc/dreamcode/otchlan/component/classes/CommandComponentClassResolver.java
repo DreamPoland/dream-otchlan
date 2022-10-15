@@ -1,8 +1,8 @@
 package cc.dreamcode.otchlan.component.classes;
 
 import cc.dreamcode.otchlan.OtchlanPlugin;
+import cc.dreamcode.otchlan.command.CommandHandler;
 import cc.dreamcode.otchlan.component.resolvers.ComponentClassResolver;
-import cc.dreamcode.otchlan.features.command.CommandHandler;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.annotation.Inject;
