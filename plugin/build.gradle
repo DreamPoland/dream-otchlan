@@ -24,7 +24,7 @@ dependencies {
     implementation 'com.github.cryptomorin:XSeries:9.1.0'
 
     // -- RGB-CHAT --
-    implementation 'com.iridium:IridiumColorAPI:1.0.6'
+    implementation 'com.iridium:IridiumColorAPI:1.0.6-dc-fork1'
 
     // -- dream-menu --
     implementation "cc.dreamcode.menu:core:0.3.6"
