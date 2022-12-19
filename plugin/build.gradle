@@ -9,7 +9,7 @@ dependencies {
     // -- configs--
     implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.6"
     implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.6"
-    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.6"
+    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.8"
 
     // -- injector --
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
