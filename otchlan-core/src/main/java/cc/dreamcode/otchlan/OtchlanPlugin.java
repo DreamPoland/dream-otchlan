@@ -49,8 +49,6 @@ public final class OtchlanPlugin extends DreamBukkitPlatform {
                 }));
         componentManager.registerComponent(PluginConfig.class);
 
-        componentManager.registerComponent(PluginConfig.class);
-        componentManager.registerComponent(MessageConfig.class);
         componentManager.registerComponent(OtchlanService.class);
         componentManager.registerComponent(OtchlanStartRunnable.class);
         componentManager.registerComponent(OtchlanCommand.class);
