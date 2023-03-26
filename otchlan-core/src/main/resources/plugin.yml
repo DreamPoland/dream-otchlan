@@ -1,5 +1,5 @@
 main: "cc.dreamcode.otchlan.OtchlanPlugin"
-version: "1.1-beta"
+version: "1.1.1-beta"
 name: "Dream-Otchlan"
 description: "Dream-Otchlan plugin written by dreamcode.cc"
 website: "https://dreamcode.cc"
