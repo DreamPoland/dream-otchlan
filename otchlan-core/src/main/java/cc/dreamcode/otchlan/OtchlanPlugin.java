@@ -63,7 +63,7 @@ public final class OtchlanPlugin extends DreamBukkitPlatform {
 
     @Override
     public @NonNull DreamVersion getDreamVersion() {
-        return DreamVersion.create("Dream-Otchlan", "1.1", "Ravis96");
+        return DreamVersion.create("Dream-Otchlan", "1.1-beta", "Ravis96");
     }
 
     @Override

@@ -1,4 +1,4 @@
-Dream-Otchlan (1.1)
+Dream-Otchlan (1.1-beta)
 -----
 
 **Required:**
