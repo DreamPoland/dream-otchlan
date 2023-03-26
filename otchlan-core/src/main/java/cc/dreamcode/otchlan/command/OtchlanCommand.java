@@ -32,16 +32,21 @@ public class OtchlanCommand extends BukkitCommand {
     public void content(@NonNull CommandSender sender, @NonNull String[] args) {
         final Player player = (Player) sender;
         if (!this.otchlanService.getOtchlanState().equals(OtchlanState.OPENED)) {
-            this.messageConfig.otchlanClosed.send(player);
+            this.messageConfig.otchlanClosed.send(player, new MapBuilder<String, Object>()
+                    .put("time", TimeUtil.convertDurationMills(CountUtil.getCountDown(
+                            this.otchlanService.getRunTime().get(),
+                            this.pluginConfig.startDuration
+                    )))
+                    .build());
             return;
         }
 
         final long time = this.otchlanService.getCacheOpenPlayerTime().getOrDefault(player.getUniqueId(), 0L);
 
-        Duration duration = CountUtil.getCountDown(time, this.pluginConfig.otchlanOpenCoolDown);
-        if (!duration.isNegative()) {
+        Duration openCoolDown = CountUtil.getCountDown(time, this.pluginConfig.otchlanOpenCoolDown);
+        if (!openCoolDown.isNegative()) {
             this.messageConfig.cooldown.send(player, new MapBuilder<String, Object>()
-                    .put("time", TimeUtil.convertDurationMills(duration))
+                    .put("time", TimeUtil.convertDurationMills(openCoolDown))
                     .build());
             return;
         }
