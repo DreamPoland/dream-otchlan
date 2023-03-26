@@ -1,0 +1,67 @@
+repositories {
+    maven { url "https://repo.codemc.io/repository/nms" }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+dependencies {
+    // -- spigot api -- (base)
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+
+    // -- dream-platform --
+    implementation "cc.dreamcode.platform:core:1.6.1"
+    implementation "cc.dreamcode.platform:bukkit:1.6.1"
+
+    // -- dream-utilities --
+    implementation "cc.dreamcode:utilities:1.1.2"
+    implementation "cc.dreamcode:utilities-bukkit:1.1.2"
+
+    // -- dream-notice --
+    implementation "cc.dreamcode.notice:core:1.2.3"
+    implementation "cc.dreamcode.notice:bukkit:1.2.3"
+    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.2.3"
+
+    // -- dream-command --
+    implementation "cc.dreamcode.command:core:1.2.5"
+    implementation "cc.dreamcode.command:bukkit:1.2.5"
+
+    // -- dream-menu --
+    implementation "cc.dreamcode.menu:core:0.4.7"
+    implementation "cc.dreamcode.menu:bukkit:0.4.7"
+    implementation "cc.dreamcode.menu:serdes-bukkit:0.4.7"
+    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4.7"
+
+    // -- configs--
+    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.9"
+    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.9"
+    implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.9"
+
+    // -- injector --
+    implementation 'eu.okaeri:okaeri-injector:2.1.0'
+
+    // -- placeholders --
+    implementation 'eu.okaeri:okaeri-placeholders-bukkit:4.0.7'
+
+    // -- tasker (easy sync/async scheduler) --
+    implementation 'eu.okaeri:okaeri-tasker-bukkit:1.2.0'
+
+    // -- Multi-Version Items helper --
+    implementation 'com.github.cryptomorin:XSeries:9.3.1'
+}
+
+shadowJar {
+    checkstyleTest
+
+    archiveFileName = "Dream-Otchlan-${project.version}.jar"
+
+    minimize()
+
+    relocate "com.cryptomorin", "cc.dreamcode.otchlan.libs.com.cryptomorin"
+    relocate "eu.okaeri", "cc.dreamcode.otchlan.libs.eu.okaeri"
+    relocate "net.kyori", "cc.dreamcode.otchlan.libs.net.kyori"
+
+    relocate "cc.dreamcode.platform", "cc.dreamcode.otchlan.libs.cc.dreamcode.platform"
+    relocate "cc.dreamcode.utilities", "cc.dreamcode.otchlan.libs.cc.dreamcode.utilities"
+    relocate "cc.dreamcode.menu", "cc.dreamcode.otchlan.libs.cc.dreamcode.menu"
+    relocate "cc.dreamcode.command", "cc.dreamcode.otchlan.libs.cc.dreamcode.command"
+    relocate "cc.dreamcode.notice", "cc.dreamcode.otchlan.libs.cc.dreamcode.notice"
+}
