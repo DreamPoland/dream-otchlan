@@ -50,7 +50,7 @@ public class OtchlanRunnable extends BukkitRunnable {
                 this.pluginConfig.startDuration
         );
 
-        Optional.ofNullable(this.messageConfig.announcements.get(duration)).ifPresent(notice ->
+        Optional.ofNullable(this.messageConfig.announcements.get(duration.getSeconds())).ifPresent(notice ->
                 this.otchlanPlugin.getServer().getOnlinePlayers().forEach(player ->
                         notice.send(player, new MapBuilder<String, Object>()
                                 .put("time", TimeUtil.convertDurationSeconds(duration))

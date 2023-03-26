@@ -11,7 +11,6 @@ import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 
-import java.time.Duration;
 import java.util.Map;
 
 @Configuration(
@@ -32,16 +31,16 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice lastPageReach = new BukkitNotice(NoticeType.CHAT, "&cOsiagnieto ostatnia strone, dalej juz nic nie ma!");
     public BukkitNotice otchlanClosed = new BukkitNotice(NoticeType.CHAT, "&cOtchlan jest zamknieta, nie mozesz jej otworzyc!");
 
-    public Map<Duration, BukkitNotice> announcements = new ImmutableMap.Builder<Duration, BukkitNotice>()
-            .put(Duration.ofSeconds(30), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
-            .put(Duration.ofSeconds(15), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
-            .put(Duration.ofSeconds(10), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
-            .put(Duration.ofSeconds(5), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
-            .put(Duration.ofSeconds(4), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
-            .put(Duration.ofSeconds(3), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
-            .put(Duration.ofSeconds(2), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
-            .put(Duration.ofSeconds(1), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
-            .put(Duration.ofSeconds(0), new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostala &aotwarta&7. (&f/otchlan&7)"))
+    public Map<Long, BukkitNotice> announcements = new ImmutableMap.Builder<Long, BukkitNotice>()
+            .put(30L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
+            .put(15L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
+            .put(10L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
+            .put(5L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
+            .put(4L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
+            .put(3L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
+            .put(2L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
+            .put(1L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostanie otwarta za &6{time}&7."))
+            .put(0L, new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostala &aotwarta&7. (&f/otchlan&7)"))
             .build();
 
     public BukkitNotice closeNotice = new BukkitNotice(NoticeType.CHAT, "&5&lOTCHLAN: &7Zostala &czamknieta&7.");
