@@ -2,9 +2,13 @@ package cc.dreamcode.otchlan;
 
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
-import cc.dreamcode.menu.serdes.bukkit.okaeri.MenuBuilderSerdes;
+import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerdes;
 import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
 import cc.dreamcode.notice.bukkit.okaeri_serdes.BukkitNoticeSerdes;
+import cc.dreamcode.otchlan.command.OtchlanCommand;
+import cc.dreamcode.otchlan.config.MessageConfig;
+import cc.dreamcode.otchlan.config.PluginConfig;
+import cc.dreamcode.otchlan.task.OtchlanStartRunnable;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.CommandComponentResolver;
@@ -12,10 +16,6 @@ import cc.dreamcode.platform.bukkit.component.ConfigurationComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ListenerComponentResolver;
 import cc.dreamcode.platform.bukkit.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
-import cc.dreamcode.otchlan.command.OtchlanCommand;
-import cc.dreamcode.otchlan.config.MessageConfig;
-import cc.dreamcode.otchlan.config.PluginConfig;
-import cc.dreamcode.otchlan.task.OtchlanStartRunnable;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
@@ -44,8 +44,8 @@ public final class OtchlanPlugin extends DreamBukkitPlatform {
         componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig ->
                 this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
-                    bukkitCommandProvider.setNoPermissionMessage(messageConfig.noPermission);
-                    bukkitCommandProvider.setNoPlayerMessage(messageConfig.notPlayer);
+                    bukkitCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission);
+                    bukkitCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer);
                 }));
         componentManager.registerComponent(PluginConfig.class);
 

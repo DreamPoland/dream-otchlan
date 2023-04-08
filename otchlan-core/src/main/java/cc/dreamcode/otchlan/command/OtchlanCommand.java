@@ -56,7 +56,7 @@ public class OtchlanCommand extends BukkitCommand {
     }
 
     @Override
-    public List<String> tab(@NonNull Player player, @NonNull String[] args) {
+    public List<String> tab(@NonNull CommandSender sender, @NonNull String[] args) {
         return null;
     }
 }

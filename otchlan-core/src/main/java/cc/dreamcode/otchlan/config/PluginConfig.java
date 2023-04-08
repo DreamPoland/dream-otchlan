@@ -1,6 +1,6 @@
 package cc.dreamcode.otchlan.config;
 
-import cc.dreamcode.menu.serdes.bukkit.BukkitMenuBuilder;
+import cc.dreamcode.menu.bukkit.BukkitMenuBuilder;
 import cc.dreamcode.platform.bukkit.component.configuration.Configuration;
 import cc.dreamcode.utilities.builder.MapBuilder;
 import cc.dreamcode.utilities.bukkit.builder.ItemBuilder;

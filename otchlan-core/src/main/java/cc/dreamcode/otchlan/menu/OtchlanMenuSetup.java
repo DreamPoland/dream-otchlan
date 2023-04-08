@@ -1,10 +1,10 @@
 package cc.dreamcode.otchlan.menu;
 
+import cc.dreamcode.menu.bukkit.BukkitMenuBuilder;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.menu.bukkit.base.BukkitMenu;
 import cc.dreamcode.menu.bukkit.base.BukkitMenuPaginated;
 import cc.dreamcode.menu.bukkit.setup.BukkitMenuPaginatedSetup;
-import cc.dreamcode.menu.serdes.bukkit.BukkitMenuBuilder;
 import cc.dreamcode.otchlan.config.MessageConfig;
 import cc.dreamcode.otchlan.config.PluginConfig;
 import eu.okaeri.injector.annotation.Inject;
@@ -18,7 +18,7 @@ public class OtchlanMenuSetup implements BukkitMenuPaginatedSetup {
     @Override
     public BukkitMenuPaginated build() {
         final BukkitMenuBuilder bukkitMenuBuilder = this.pluginConfig.otchlanMenu;
-        final BukkitMenu bukkitMenu = bukkitMenuBuilder.build();
+        final BukkitMenu bukkitMenu = bukkitMenuBuilder.buildEmpty();
 
         bukkitMenuBuilder.getItems().forEach((integer, itemStack) ->
                 bukkitMenu.setItem(integer, itemStack, e -> e.setCancelled(true)));
