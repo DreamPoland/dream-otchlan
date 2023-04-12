@@ -36,7 +36,7 @@ public class OtchlanService {
         }
 
         this.otchlanPlugin.createInstance(OtchlanRunnable.class)
-                .runTaskTimerAsynchronously(this.otchlanPlugin, 20L, 20L);
+                .runTaskTimer(this.otchlanPlugin, 20L, 20L);
     }
 
 }

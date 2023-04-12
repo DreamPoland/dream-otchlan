@@ -58,24 +58,20 @@ public class OtchlanRunnable extends BukkitRunnable {
 
         if (duration.isNegative()) {
 
-            this.tasker.newChain()
-                    .sync(() -> {
-                        this.otchlanService.setBukkitMenuPaginated(
-                                this.otchlanPlugin.createInstance(OtchlanMenuSetup.class).build());
+            this.otchlanService.setBukkitMenuPaginated(
+                    this.otchlanPlugin.createInstance(OtchlanMenuSetup.class).build());
 
-                        this.otchlanPlugin.getServer().getWorlds().forEach(world ->
-                                world.getEntities()
-                                        .stream()
-                                        .filter(Item.class::isInstance)
-                                        .forEach(entity -> {
-                                            final Item item = (Item) entity;
-                                            this.otchlanService.getBukkitMenuPaginated().addStorageItem(item.getItemStack());
-                                            item.remove();
-                                        }));
+            this.otchlanPlugin.getServer().getWorlds().forEach(world ->
+                    world.getEntities()
+                            .stream()
+                            .filter(Item.class::isInstance)
+                            .forEach(entity -> {
+                                final Item item = (Item) entity;
+                                this.otchlanService.getBukkitMenuPaginated().addStorageItem(item.getItemStack());
+                                item.remove();
+                            }));
 
-                        this.otchlanService.setOtchlanState(OtchlanState.OPENED);
-                    })
-                    .execute();
+            this.otchlanService.setOtchlanState(OtchlanState.OPENED);
 
             this.tasker.newDelayer(this.pluginConfig.closeDuration)
                     .delayed(() -> {
