@@ -3,13 +3,13 @@ package cc.dreamcode.otchlan;
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerdes;
-import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
-import cc.dreamcode.notice.bukkit.okaeri_serdes.BukkitNoticeSerdes;
+import cc.dreamcode.notice.minecraft.bukkit.serdes.BukkitNoticeSerdes;
 import cc.dreamcode.otchlan.command.OtchlanCommand;
 import cc.dreamcode.otchlan.config.MessageConfig;
 import cc.dreamcode.otchlan.config.PluginConfig;
 import cc.dreamcode.otchlan.task.OtchlanStartRunnable;
 import cc.dreamcode.platform.DreamVersion;
+import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.CommandComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ConfigurationComponentResolver;
@@ -21,7 +21,7 @@ import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
 import lombok.NonNull;
 
-public final class OtchlanPlugin extends DreamBukkitPlatform {
+public final class OtchlanPlugin extends DreamBukkitPlatform implements DreamBukkitConfig {
 
     @Getter private static OtchlanPlugin otchlanPlugin;
 
@@ -34,7 +34,6 @@ public final class OtchlanPlugin extends DreamBukkitPlatform {
     public void enable(@NonNull ComponentManager componentManager) {
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(BukkitMenuProvider.create(this));
-        this.registerInjectable(BukkitNoticeProvider.create(this));
         this.registerInjectable(BukkitCommandProvider.create(this, this.getInjector()));
 
         componentManager.registerResolver(CommandComponentResolver.class);
@@ -44,8 +43,8 @@ public final class OtchlanPlugin extends DreamBukkitPlatform {
         componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig ->
                 this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
-                    bukkitCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission);
-                    bukkitCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer);
+                    bukkitCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission.getText());
+                    bukkitCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer.getText());
                 }));
         componentManager.registerComponent(PluginConfig.class);
 
@@ -65,7 +64,7 @@ public final class OtchlanPlugin extends DreamBukkitPlatform {
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getBukkitConfigurationSerdesPack() {
+    public @NonNull OkaeriSerdesPack getConfigSerdesPack() {
         return registry -> {
             registry.register(new BukkitNoticeSerdes());
             registry.register(new MenuBuilderSerdes());

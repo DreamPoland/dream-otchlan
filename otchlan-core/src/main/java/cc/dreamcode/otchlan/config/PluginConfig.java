@@ -38,6 +38,7 @@ public class PluginConfig extends OkaeriConfig {
             "&6&lOtchlan &7Strona: &a&l{page}&7&l",
             6,
             false,
+            false,
             new MapBuilder<Integer, ItemStack>()
                     .put(45, new ItemBuilder(XMaterial.RED_WOOL.parseItem())
                             .setName("&cPowrot do porzedniej strony.")
