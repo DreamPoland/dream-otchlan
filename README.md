@@ -1,4 +1,4 @@
-Dream-Otchlan (1.2.3)
+Dream-Otchlan (1.2.4)
 -----
 
 **Required:**
