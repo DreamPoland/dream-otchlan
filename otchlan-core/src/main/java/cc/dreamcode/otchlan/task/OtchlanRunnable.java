@@ -82,6 +82,7 @@ public class OtchlanRunnable extends BukkitRunnable {
                         this.otchlanService.setOtchlanState(OtchlanState.CLOSED);
                         this.otchlanService.getRunTime().set(0L);
                         this.otchlanService.getBukkitMenuPaginated().getViewers().forEach(HumanEntity::closeInventory);
+                        this.otchlanService.getBukkitMenuPaginated().dispose();
                         this.otchlanService.setBukkitMenuPaginated(null);
 
                         this.otchlanPlugin.getServer().getOnlinePlayers().forEach(player ->
