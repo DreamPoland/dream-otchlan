@@ -8,12 +8,14 @@ import cc.dreamcode.menu.bukkit.setup.BukkitMenuPaginatedSetup;
 import cc.dreamcode.otchlan.config.MessageConfig;
 import cc.dreamcode.otchlan.config.PluginConfig;
 import eu.okaeri.injector.annotation.Inject;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor(onConstructor_ = @Inject)
 public class OtchlanMenuSetup implements BukkitMenuPaginatedSetup {
 
-    private @Inject PluginConfig pluginConfig;
-    private @Inject MessageConfig messageConfig;
-    private @Inject BukkitMenuProvider bukkitMenuProvider;
+    private final PluginConfig pluginConfig;
+    private final MessageConfig messageConfig;
+    private final BukkitMenuProvider bukkitMenuProvider;
 
     @Override
     public BukkitMenuPaginated build() {

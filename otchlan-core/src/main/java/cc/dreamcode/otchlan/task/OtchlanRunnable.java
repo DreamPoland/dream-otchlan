@@ -12,6 +12,7 @@ import cc.dreamcode.utilities.TimeUtil;
 import cc.dreamcode.utilities.builder.MapBuilder;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.tasker.core.Tasker;
+import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Item;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -19,13 +20,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.time.Duration;
 import java.util.Optional;
 
+@RequiredArgsConstructor(onConstructor_ = @Inject)
 public class OtchlanRunnable extends BukkitRunnable {
 
-    private @Inject OtchlanPlugin otchlanPlugin;
-    private @Inject PluginConfig pluginConfig;
-    private @Inject MessageConfig messageConfig;
-    private @Inject OtchlanService otchlanService;
-    private @Inject Tasker tasker;
+    private final OtchlanPlugin otchlanPlugin;
+    private final PluginConfig pluginConfig;
+    private final MessageConfig messageConfig;
+    private final OtchlanService otchlanService;
+    private final Tasker tasker;
 
     /**
      * When an object implementing interface {@code Runnable} is used

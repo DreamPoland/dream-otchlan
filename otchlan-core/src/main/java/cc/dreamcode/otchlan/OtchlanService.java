@@ -15,10 +15,10 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Inject)
 public class OtchlanService {
 
-    private @Inject OtchlanPlugin otchlanPlugin;
+    private final OtchlanPlugin otchlanPlugin;
 
     @Getter private final AtomicLong runTime = new AtomicLong();
     @Getter @Setter private BukkitMenuPaginated bukkitMenuPaginated;

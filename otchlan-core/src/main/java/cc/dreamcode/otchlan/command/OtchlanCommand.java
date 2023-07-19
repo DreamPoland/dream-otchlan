@@ -20,12 +20,17 @@ import java.util.List;
 @RequiredPlayer
 public class OtchlanCommand extends BukkitCommand {
 
-    private @Inject PluginConfig pluginConfig;
-    private @Inject MessageConfig messageConfig;
-    private @Inject OtchlanService otchlanService;
+    private final PluginConfig pluginConfig;
+    private final MessageConfig messageConfig;
+    private final OtchlanService otchlanService;
 
-    public OtchlanCommand() {
+    @Inject
+    public OtchlanCommand(final PluginConfig pluginConfig, final MessageConfig messageConfig, final OtchlanService otchlanService) {
         super("otchlan");
+
+        this.pluginConfig = pluginConfig;
+        this.messageConfig = messageConfig;
+        this.otchlanService = otchlanService;
     }
 
     @Override

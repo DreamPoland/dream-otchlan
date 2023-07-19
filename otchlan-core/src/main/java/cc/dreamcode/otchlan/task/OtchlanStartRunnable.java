@@ -5,12 +5,14 @@ import cc.dreamcode.otchlan.OtchlanPlugin;
 import cc.dreamcode.otchlan.OtchlanService;
 import cc.dreamcode.otchlan.OtchlanState;
 import eu.okaeri.injector.annotation.Inject;
+import lombok.RequiredArgsConstructor;
 
 @Scheduler(delay = 20, interval = 20)
+@RequiredArgsConstructor(onConstructor_ = @Inject)
 public class OtchlanStartRunnable implements Runnable {
 
-    private @Inject OtchlanPlugin otchlanPlugin;
-    private @Inject OtchlanService otchlanService;
+    private final OtchlanPlugin otchlanPlugin;
+    private final OtchlanService otchlanService;
 
     /**
      * When an object implementing interface {@code Runnable} is used
@@ -35,7 +37,6 @@ public class OtchlanStartRunnable implements Runnable {
             this.otchlanService.getRunTime().set(System.currentTimeMillis());
         }
 
-        this.otchlanPlugin.getServer().getScheduler().runTask(this.otchlanPlugin, () ->
-                this.otchlanService.start());
+        this.otchlanPlugin.getServer().getScheduler().runTask(this.otchlanPlugin, this.otchlanService::start);
     }
 }
