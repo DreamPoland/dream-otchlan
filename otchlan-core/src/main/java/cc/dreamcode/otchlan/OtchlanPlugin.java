@@ -60,7 +60,7 @@ public final class OtchlanPlugin extends DreamBukkitPlatform implements DreamBuk
 
     @Override
     public @NonNull DreamVersion getDreamVersion() {
-        return DreamVersion.create("Dream-Otchlan", "1.2.4", "Ravis96");
+        return DreamVersion.create("Dream-Otchlan", "1.2.5", "Ravis96");
     }
 
     @Override

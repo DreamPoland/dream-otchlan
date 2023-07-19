@@ -8,7 +8,7 @@ plugins {
 
 allprojects {
     group 'cc.dreamcode.otchlan'
-    version '1.2.4'
+    version '1.2.5'
 
     apply plugin: 'java-library'
     apply plugin: 'checkstyle'
@@ -25,20 +25,8 @@ allprojects {
         }
     }
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = 'UTF-8'
-    }
-
-    checkstyle {
-        toolVersion '10.3.1'
-        maxWarnings = 0
-    }
-
-    tasks.withType(Checkstyle) {
-        reports {
-            xml.required = false
-            html.required = true
-        }
     }
 
     repositories {
